@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Ulang Tahun Quinsya!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ffe6f0, #ffd6e7);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      text-align: center;
+    }h1 {
+  margin-top: 40px;
+  color: #ff1493;
+  font-size: 2.5em;
+}
+
+p {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+img.photo {
+  width: 250px;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.butterfly {
+  position: absolute;
+  width: 50px;
+  animation: fly 12s infinite linear;
+}
+
+@keyframes fly {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.fireworks, .hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Selamat Ulang Tahun, Quinsya! 🎉</h1>
+  <p>
+    Di hari istimewa ini, aku ingin mengingatkanmu betapa berartinya kamu bagi banyak orang.
+    Semoga setiap harimu dipenuhi dengan kebahagiaan, cinta, dan keberanian untuk mengejar impianmu.
+    <br><br>
+    Ingatlah, setiap tahun adalah kesempatan baru untuk tumbuh dan belajar.
+    Nikmati perjalananmu, dan jangan lupa untuk selalu bersyukur atas setiap momen.
+    <br><br>
+    Selamat merayakan hari istimewa ini!
+    Semoga tahun ini membawa banyak kebahagiaan dan kesuksesan untukmu. 🌟
+  </p>
+  <img class="photo" src="foto.jpg" alt="Quinsya">  <audio autoplay loop>
+    <source src="lagu.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>  <img class="butterfly" src="https://i.ibb.co/ZYW3VTp/butterfly.png" style="left: 10%; animation-delay: 0s;">
+  <img class="butterfly" src="https://i.ibb.co/ZYW3VTp/butterfly.png" style="left: 40%; animation-delay: 2s;">
+  <img class="butterfly" src="https://i.ibb.co/ZYW3VTp/butterfly.png" style="left: 70%; animation-delay: 4s;"><canvas class="fireworks"></canvas> <canvas class="hearts"></canvas>
+
+  <script>
+    // Fireworks effect
+    // Bisa pakai library seperti tsParticles jika butuh lebih canggih
+    const canvas = document.querySelector(".fireworks");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function drawHeart(x, y, size, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size, size);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, -3, -5, -15, -25, -15);
+      ctx.bezierCurveTo(-55, -15, -55, 22.5, -55, 22.5);
+      ctx.bezierCurveTo(-55, 40, -35, 62, 0, 80);
+      ctx.bezierCurveTo(35, 62, 55, 40, 55, 22.5);
+      ctx.bezierCurveTo(55, 22.5, 55, -15, 25, -15);
+      ctx.bezierCurveTo(10, -15, 0, -3, 0, 0);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function renderHearts() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < 10; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = Math.random() * 0.2 + 0.05;
+        const color = `rgba(255,0,128,${Math.random()})`;
+        drawHeart(x, y, size, color);
+      }
+      requestAnimationFrame(renderHearts);
+    }
+
+    renderHearts();
+  </script></body>
+</html>
